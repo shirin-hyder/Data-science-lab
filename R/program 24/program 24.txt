@@ -1,0 +1,35 @@
+> library(e1071)
+Warning message:
+package ‘e1071’ was built under R version 4.1.3 
+> cars = read.csv("cars.csv")
+> cars
+   Example Colour   Type   Origin Stolen.
+1        1    red sports domestic     yes
+2        2    red sports domestic      no
+3        3    red sports domestic     yes
+4        4 yellow sports domestic      no
+5        5 yellow sports imported     yes
+6        6 yellow    SUV imported      no
+7        7 yellow    SUV imported     yes
+8        8 yellow    SUV domestic      no
+9        9    red    SUV imported      no
+10      10    red sports imported     yes
+> cars_train = cars[,2:4]
+> cars_train
+   Colour   Type   Origin
+1     red sports domestic
+2     red sports domestic
+3     red sports domestic
+4  yellow sports domestic
+5  yellow sports imported
+6  yellow    SUV imported
+7  yellow    SUV imported
+8  yellow    SUV domestic
+9     red    SUV imported
+10    red sports imported
+>  cars_test = data.frame(Color="red", Type="sports", Origin="domestic")
+> cl = naiveBayes(cars_train,cars$Stolen.)
+> pd = predict(cl , cars_test)
+> pd
+[1] yes
+Levels: no yes
